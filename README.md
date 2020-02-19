@@ -64,12 +64,8 @@ Read like *spike*.
 
 - spaic-dom
 
-    The DOM renderer of Spaic
+    The DOM renderer
 
 - spaic
 
-    The core runtime and type definition
-
-- spaic-abs
-
-    The abstract renderer spec of Spaic
+    The core runtime
