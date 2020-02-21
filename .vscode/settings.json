@@ -3,6 +3,12 @@
     "**/CMakeFiles": true,
     "**/cmake_install.cmake": true,
     "**/Makefile": true,
-    "**/CMakeCache.txt": true
+    "**/CMakeCache.txt": true,
+    "**/*.a": true
+  },
+  "files.associations": {
+    "*.tcc": "cpp",
+    "type_traits": "cpp",
+    "optional": "cpp"
   }
 }
