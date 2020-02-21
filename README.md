@@ -39,14 +39,17 @@ Read like *spike*.
     ShouldRender update(Msg&& msg) {
         if (increment == msg) {
             set_count([](previous) {
-                previous + increment[0],
+                return previous + increment[0];
             })
+            return true;
         }
         if (decrement == msg) {
             set_count([](previous) {
-                previous - decrement[0],
+                return previous - decrement[0];
             })
+            return true;
         }
+        return false;
     }
     Node render() {
         return (
@@ -74,7 +77,7 @@ Read like *spike*.
     );
     ```
 
-2. :tada: We can implement React-like API on C++
+1. :tada: We can implement React-like API on C++
 
 ## Modules
 
