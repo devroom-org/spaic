@@ -20,34 +20,58 @@ Read like *spike*.
 1. We can write React-like Component in C++ like these syntax:
 
     ```c++
-    namespace Props {
-        
+    #include <spaic/Prelude.hpp>
+
+    namespace props::app {
+        auto is_dark = fallback<bool>(false);
+
+        auto all = prop_set(is_dark);
     }
-    public Node app() {
-        auto [count, set_count] = use_state(false);
+    namespace state::app {
+        auto [count, set_count] = use_state(0);
+
+        auto all = state_set(count);
+    }
+    namespace msg {
+        auto increment = app_msg<int>();
+        auto decrement = app_msg<int>();
+    }
+    ShouldRender update(Msg&& msg) {
+        if (increment == msg) {
+            set_count([](previous) {
+                previous + increment[0],
+            })
+        }
+        if (decrement == msg) {
+            set_count([](previous) {
+                previous - decrement[0],
+            })
+        }
+    }
+    Node render() {
         return (
             div(
                 className = (count > 10 && greater_than_10)
             )({
                 "Hello! Your counter is ",
                 count,
-                button(
-                    onClick = [] {
-                        set_count([](previous) { previous + 1 })
-                    }
-                )({
+                button(onClick = increment(1))({
                     "+1"
                 }),
-                button(
-                    onClick = [] {
-                        set_count([](previous) { previous + 1 })
-                    }
-                )({
+                button(onClick = decrement(1))({
                     "-1"
                 })
             })
         );
     }
+
+    auto app = create_component(
+        props::app::all,
+        state::app::all,
+
+        update,
+        render
+    );
     ```
 
 2. :tada: We can implement React-like API on C++
