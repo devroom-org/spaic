@@ -6,17 +6,31 @@ namespace props::counter
 {
 auto is_dark_theme = fallback<bool>(false);
 }
-class Counter
+namespace state::counter
 {
-private:
-    bool test;
+State<int> count;
+}
+namespace msg
+{
+Message<int> increment;
+Message<int> decrement;
+} // namespace msg
 
-public:
-    template <typename... T>
-    Counter(T... values)
+ShouldRender update()
+{
+    using namespace state::counter;
+    using namespace msg;
+    if (increment)
     {
+        count += increment.get<0>();
+        return true;
     }
-};
+    if (decrement)
+    {
+        count -= decrement.get<0>();
+    }
+    return true;
+}
 
 int main()
 {

@@ -28,25 +28,23 @@ Read like *spike*.
         auto all = prop_set(is_dark);
     }
     namespace state::app {
-        auto [count, set_count] = use_state(0);
+        State<int> count;
 
         auto all = state_set(count);
     }
     namespace msg {
-        auto increment = app_msg<int>();
-        auto decrement = app_msg<int>();
+        Message<int> increment;
+        Message<int> decrement;
     }
-    ShouldRender update(Msg&& msg) {
-        if (increment == msg) {
-            set_count([](previous) {
-                return previous + increment[0];
-            })
+    ShouldRender update() {
+        using namespace state::app;
+        using namespace msg;
+        if (increment) {
+            count += increment.get<0>();
             return true;
         }
-        if (decrement == msg) {
-            set_count([](previous) {
-                return previous - decrement[0];
-            })
+        if (decrement) {
+            count -= decrement.get<0>();
             return true;
         }
         return false;

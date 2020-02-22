@@ -2,7 +2,7 @@
 
 #include <functional>
 
-namespace spaic
+namespace spaic::comp
 {
 using ShouldRender = bool;
 template <typename State, typename Msg>
@@ -13,5 +13,5 @@ class Component
 {
 };
 template <typename Props, typename State>
-Component<Props, State> create_component();
+Component<Props, State> create_component(Props props, State state);
 } // namespace spaic
