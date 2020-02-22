@@ -81,10 +81,6 @@ Read like *spike*.
 
 ## Modules
 
-- spaic-dui
-
-    The declarative UI api
-
 - spaic-css
 
     The CSS-in-C++ api
