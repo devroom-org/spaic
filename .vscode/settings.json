@@ -9,6 +9,11 @@
   "files.associations": {
     "*.tcc": "cpp",
     "type_traits": "cpp",
-    "optional": "cpp"
+    "optional": "cpp",
+    "system_error": "cpp",
+    "array": "cpp",
+    "tuple": "cpp",
+    "utility": "cpp",
+    "functional": "cpp"
   }
 }
