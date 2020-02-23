@@ -7,5 +7,8 @@ class State
 {
 public:
     State() {}
+
+    // todo:
+    T &operator*();
 };
 } // namespace spaic::state

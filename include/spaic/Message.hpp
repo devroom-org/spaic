@@ -1,5 +1,7 @@
 #pragma once
 
+#include <tuple>
+
 namespace spaic::msg
 {
 template <typename... T>
@@ -11,7 +13,7 @@ public:
     operator bool();
 
     template <size_t I>
-    std::tuple_element<I, T...> get();
+    typename std::tuple_element<I, std::tuple<T...>>::type get();
 };
 
 } // namespace spaic::msg

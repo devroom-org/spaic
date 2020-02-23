@@ -9,3 +9,4 @@ using namespace spaic::props;
 using namespace spaic::msg;
 using namespace spaic::state;
 using namespace spaic::comp;
+using namespace spaic::vnode;
