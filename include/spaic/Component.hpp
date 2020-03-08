@@ -11,8 +11,11 @@ namespace spaic::comp
 using ShouldRender = bool;
 using Update = std::function<ShouldRender()>;
 using Render = std::function<spaic::vnode::VNode()>;
-
-class ComponentBody;
+class ComponentBody
+{
+public:
+    spaic::vnode::VNode operator()(spaic::vnode::VNode children...) noexcept;
+};
 template <typename Props>
 class Component
 {
@@ -20,11 +23,8 @@ public:
     template <typename... T>
     ComponentBody operator()(T... args) noexcept;
 };
-class ComponentBody
-{
-public:
-    spaic::vnode::VNode operator()(spaic::vnode::VNode children...) noexcept;
-};
 template <typename Props, typename StateSet>
 Component<Props> create_component(Props props, StateSet state, Update update, Render render);
 } // namespace spaic::comp
+
+#include <spaic/detail/Component.hpp>

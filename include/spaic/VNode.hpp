@@ -6,6 +6,7 @@
 
 namespace spaic::vnode
 {
+// TODO: Array of VNode should be VNode.
 using VNode = std::variant<
     std::string,
     std::nullptr_t,

@@ -2,8 +2,12 @@
 
 #include <spaic-css/Stylesheet.hpp>
 
-namespace spaic
+namespace spaic::css
 {
 template <typename... T>
-spaic::css::Stylesheet css(T... params);
-}
+Stylesheet css(T... params);
+template <typename... T>
+Stylesheet keyframes(T... params);
+} // namespace spaic::css
+
+#include <spaic-css/detail/CSS.hpp>

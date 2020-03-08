@@ -1,6 +1,7 @@
 #include <cstdlib>
 
 #include <spaic/Prelude.hpp>
+#include <spaic-css/Prelude.hpp>
 
 namespace props::counter
 {
@@ -46,9 +47,8 @@ auto counter = create_component(props::counter::all, state::counter::all, update
 int main()
 {
     using namespace props::counter;
+    auto wtf_is_this_style = css(
+        width = 10.0_px);
     counter(is_dark_theme = true)("Hello, world!");
-    // new Counter(is_dark_theme = true);
-    // Counter{is_dark_theme = true};
-    // Counter(is_dark_theme = true);
     return EXIT_SUCCESS;
 }

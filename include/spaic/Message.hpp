@@ -17,3 +17,5 @@ public:
 };
 
 } // namespace spaic::msg
+
+#include <spaic/detail/Message.hpp>

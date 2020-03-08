@@ -8,6 +8,16 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 include_directories("../include/")
 file(GLOB_RECURSE SOURCE_LIST "./*.cpp")
+list(FILTER SOURCE_LIST EXCLUDE REGEX "CMakeCXXCompilerId.cpp$")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../bin")
 
-add_executable(${PROJECT_NAME} ${SOURCE_LIST})
+foreach( source ${SOURCE_LIST} )
+    string(REPLACE ".cpp" "" name ${source} )
+    string(REGEX REPLACE ".+/" "" name ${name} )
+    add_executable( ${name} ${source} )
+    target_link_libraries(${name}
+    PRIVATE
+        Spaic
+        SpaicCSS
+    )
+endforeach( source ${SOURCE_LIST} )

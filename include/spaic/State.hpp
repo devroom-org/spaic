@@ -8,7 +8,8 @@ class State
 public:
     State() {}
 
-    // todo:
     T &operator*();
 };
 } // namespace spaic::state
+
+#include <spaic/detail/State.hpp>
