@@ -1,5 +1,6 @@
 #pragma once
 
+#include <spaic/Component.hpp>
 #include <variant>
 #include <string>
 #include <vector>
@@ -8,6 +9,8 @@ namespace spaic::vnode
 {
 // TODO: Array of VNode should be VNode.
 using VNodeBase = std::variant<
+    spaic::comp::ComponentBody,
+    spaic::comp::ComponentNode,
     std::string,
     std::nullptr_t,
     bool,
@@ -38,9 +41,9 @@ private:
 
 public:
     template <typename T>
-    requires std::is_convertible_v<std::remove_reference_t<T>, VNodeBase> ||
-             std::is_convertible_v<std::remove_reference_t<T>, std::vector<VNode>>
-    VNode(T &&v) noexcept(noexcept(std::is_constructible_v<decltype(_value), decltype(std::forward<T>(v))>))
+        requires std::is_convertible_v<std::remove_reference_t<T>, VNodeBase> ||
+        std::is_convertible_v<std::remove_reference_t<T>, std::vector<VNode>>
+        VNode(T &&v) noexcept(noexcept(std::is_constructible_v<decltype(_value), decltype(std::forward<T>(v))>))
         : _value(std::forward<T>(v)) {}
 };
 } // namespace spaic::vnode

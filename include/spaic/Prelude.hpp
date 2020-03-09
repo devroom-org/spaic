@@ -3,6 +3,7 @@
 #include <spaic/Property.hpp>
 #include <spaic/Message.hpp>
 #include <spaic/Component.hpp>
+#include <spaic/ComponentPart.hpp>
 #include <spaic/State.hpp>
 
 using namespace spaic::props;
