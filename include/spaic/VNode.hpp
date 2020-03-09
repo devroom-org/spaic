@@ -7,7 +7,7 @@
 namespace spaic::vnode
 {
 // TODO: Array of VNode should be VNode.
-using VNode = std::variant<
+using VNodeBase = std::variant<
     std::string,
     std::nullptr_t,
     bool,
@@ -28,4 +28,19 @@ using VNode = std::variant<
     float,
     double,
     long double>;
+
+class VNode final
+{
+private:
+    // I prefer `_value`
+    // wtf is that noexcept(noexcept())
+    std::variant<VNodeBase, std::vector<VNode>> _value;
+
+public:
+    template <typename T>
+    requires std::is_convertible_v<std::remove_reference_t<T>, VNodeBase> ||
+             std::is_convertible_v<std::remove_reference_t<T>, std::vector<VNode>>
+    VNode(T &&v) noexcept(noexcept(std::is_constructible_v<decltype(_value), decltype(std::forward<T>(v))>))
+        : _value(std::forward<T>(v)) {}
+};
 } // namespace spaic::vnode

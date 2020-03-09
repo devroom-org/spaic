@@ -7,6 +7,6 @@ namespace spaic::css
 template <typename... T>
 spaic::css::Stylesheet css(T... params)
 {
-    throw "TODO";
+    throw "TODO: css(params)";
 }
 } // namespace spaic::css

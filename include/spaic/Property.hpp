@@ -14,6 +14,8 @@ class Property
 
 public:
     virtual AssignedProperty<I, O> operator=(I &&value) noexcept {};
+
+    O &operator*() noexcept;
 };
 
 template <typename I, typename O>

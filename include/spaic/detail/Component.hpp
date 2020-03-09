@@ -1,3 +1,4 @@
+
 #pragma once
 
 #include <functional>
@@ -8,7 +9,7 @@
 
 namespace spaic::comp
 {
-spaic::vnode::VNode ComponentBody::operator()(spaic::vnode::VNode children...) noexcept
+spaic::vnode::VNode ComponentBody::operator()(spaic::vnode::VNode children...) // noexcept
 {
     throw "TODO: ComponentBody::operator()(children)";
 }
@@ -17,7 +18,8 @@ template <typename Props>
 template <typename... T>
 ComponentBody Component<Props>::operator()(T... args) noexcept
 {
-    throw "TODO: Component::operator()(args)";
+    // TODO: Component::operator()(args)
+    return ComponentBody();
 }
 template <typename Props, typename StateSet>
 Component<Props> create_component(Props props, StateSet state, Update update, Render render)

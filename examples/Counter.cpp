@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <iostream>
 
 #include <spaic/Prelude.hpp>
 #include <spaic-css/Prelude.hpp>
@@ -42,13 +43,40 @@ VNode render()
     return 0;
 }
 
-auto counter = create_component(props::counter::all, state::counter::all, update, render);
-
 int main()
 {
-    using namespace props::counter;
-    auto wtf_is_this_style = css(
-        width = 10.0_px);
-    counter(is_dark_theme = true)("Hello, world!");
+    std::cout << "안녕 세계는 개뿔이" << std::endl;
+    try
+    {
+        using namespace props::counter;
+        auto wtf_is_this_style = css(
+            width = 10.0_px);
+        auto counter = create_component(props::counter::all, state::counter::all, update, render);
+
+        counter(is_dark_theme = true)("Hello, world!");
+    }
+    catch (const char *e)
+    {
+        std::cout << e << std::endl;
+    }
     return EXIT_SUCCESS;
+}
+
+// fucking test
+void test(VNode node) {}
+
+struct Incompatible
+{
+    int i;
+};
+
+void test()
+{
+    using namespace props::counter;
+    test("STR");
+    test(true);
+    std::vector<VNode> wtf;
+    wtf.push_back("STR");
+    test(wtf);
+    // test(Incompatible{3});
 }

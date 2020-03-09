@@ -13,7 +13,7 @@ public:
     operator bool();
 
     template <size_t I>
-    typename std::tuple_element<I, std::tuple<T...>>::type get();
+    std::tuple_element_t<I, std::tuple<T...>> get();
 };
 
 } // namespace spaic::msg

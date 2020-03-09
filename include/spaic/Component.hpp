@@ -14,7 +14,7 @@ using Render = std::function<spaic::vnode::VNode()>;
 class ComponentBody
 {
 public:
-    spaic::vnode::VNode operator()(spaic::vnode::VNode children...) noexcept;
+    spaic::vnode::VNode operator()(spaic::vnode::VNode children...); // noexcept;
 };
 template <typename Props>
 class Component
