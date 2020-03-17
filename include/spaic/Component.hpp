@@ -9,6 +9,7 @@ namespace spaic::vnode
 {
 class VNode;
 }
+
 namespace spaic::comp
 {
 using NativeNodeName = std::optional<const char *>;
@@ -19,7 +20,7 @@ public:
     const NativeNodeName native_node_name;
     const std::vector<spaic::vnode::VNode> children;
 
-    ComponentParent(NativeNodeName native_node_name, std::vector<spaic::vnode::VNode> children);
+    ComponentParent(NativeNodeName native_node_name, std::vector<spaic::vnode::VNode> &&children);
 };
 class ComponentSingle
 {
@@ -29,7 +30,7 @@ public:
     ComponentSingle(NativeNodeName native_node_name);
 
     template <typename... T>
-    ComponentParent operator()(T... children) noexcept;
+    ComponentParent operator()(T&&... children) noexcept;
 };
 template <typename Props>
 class Component
@@ -39,7 +40,7 @@ public:
 
     Component(NativeNodeName native_node_name);
     template <typename... T>
-    ComponentSingle operator()(T... args) noexcept;
+    ComponentSingle operator()(T&&... args) noexcept;
 };
 } // namespace spaic::comp
 

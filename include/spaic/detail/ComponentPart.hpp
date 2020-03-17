@@ -11,7 +11,7 @@
 namespace spaic::comp
 {
 template <typename Props, typename StateSet>
-Component<Props> create_component(Props props, StateSet state, Update update, Render render)
+Component<Props> create_component(Props &&props, StateSet &&state, const Update &update, const Render &render)
 {
     // TODO: create_component(props, state, update, render)
     return Component<Props>(std::nullopt);
