@@ -5,5 +5,5 @@
 
 namespace spaic::dom
 {
-std::string render(spaic::vnode::VNode node);
+std::string render(const spaic::vnode::VNode &node);
 }

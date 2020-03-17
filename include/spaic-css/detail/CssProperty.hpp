@@ -4,11 +4,10 @@
 
 namespace spaic::css::prop
 {
-
 template <typename T>
-AssignedCssProperty<T> CssProperty<T>::operator=(T value)
+template <typename U>
+AssignedCssProperty<T> CssProperty<T>::operator=(U&& value)
 {
     return AssignedCssProperty<T>();
 }
-
 } // namespace spaic::css::prop

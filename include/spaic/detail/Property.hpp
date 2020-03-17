@@ -58,6 +58,6 @@ Property<T, std::optional<T>> optional() noexcept
 template <typename T>
 Property<T, T> fallback(T &&fallback_value) noexcept
 {
-    return Fallback<T>(fallback_value);
+    return Fallback<T>(std::forward<T>(fallback_value));
 }
 } // namespace spaic::props

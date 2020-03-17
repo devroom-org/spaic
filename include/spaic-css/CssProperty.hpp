@@ -11,7 +11,8 @@ template <typename T>
 class CssProperty
 {
 public:
-    AssignedCssProperty<T> operator=(T value);
+    template <typename U>
+    AssignedCssProperty<T> operator=(U&& value);
 };
 } // namespace spaic::css::prop
 

@@ -5,5 +5,5 @@ namespace spaic::comp
 {
 ComponentSingle::ComponentSingle(NativeNodeName native_node_name) : native_node_name(native_node_name) {}
 
-ComponentParent::ComponentParent(NativeNodeName native_node_name, std::vector<spaic::vnode::VNode> children) : native_node_name(native_node_name), children(children) {}
+ComponentParent::ComponentParent(NativeNodeName native_node_name, std::vector<spaic::vnode::VNode> &&children) : native_node_name(native_node_name), children(std::move(children)) {}
 } // namespace spaic::comp
