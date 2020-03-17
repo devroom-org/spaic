@@ -9,21 +9,21 @@
 namespace spaic::comp
 {
 template <typename... T>
-ComponentNode ComponentBody::operator()(T... children) noexcept
+ComponentParent ComponentSingle::operator()(T... children) noexcept
 {
-    // TODO: ComponentBody::operator()(children)
-    return ComponentNode();
+    // TODO: ComponentSingle::operator()(children)
+    return ComponentParent(this->native_node_name, {children...});
 }
 
 template <typename Props>
-Component<Props>::Component()
+Component<Props>::Component(NativeNodeName native_node_name) : native_node_name(native_node_name)
 {
 }
 template <typename Props>
 template <typename... T>
-ComponentBody Component<Props>::operator()(T... args) noexcept
+ComponentSingle Component<Props>::operator()(T... args) noexcept
 {
     // TODO: Component::operator()(args)
-    return ComponentBody();
+    return ComponentSingle(this->native_node_name);
 }
 } // namespace spaic::comp

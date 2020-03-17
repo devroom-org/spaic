@@ -20,5 +20,6 @@ foreach( source ${SOURCE_LIST} )
     PRIVATE
         Spaic
         SpaicCSS
+        SpaicDOM
     )
 endforeach( source ${SOURCE_LIST} )

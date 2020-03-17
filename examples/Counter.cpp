@@ -1,8 +1,10 @@
 #include <cstdlib>
 #include <iostream>
+#include <string>
 
 #include <spaic/Prelude.hpp>
 #include <spaic-css/Prelude.hpp>
+#include <spaic-dom/Render.hpp>
 
 namespace props::counter
 {
@@ -48,10 +50,23 @@ auto counter = create_component(props::counter::all, state::counter::all, update
 int main()
 {
     using namespace props::counter;
-    auto wtf_is_this_style = css(
-        width = 10.0_px);
 
-    auto rendered = counter(is_dark_theme = true)("Hello, world!", 1, 2.0);
+    auto node = counter(is_dark_theme = true)("Hello, world!", 1, 2.0);
+    std::string test = "12345678";
+    std::vector<VNode> test2;
+    test2.push_back("1");
+    test2.push_back(2);
+    test2.push_back(3.0);
+
+    std::cout << spaic::dom::render(node) << std::endl;
+    std::cout << spaic::dom::render(nullptr) << std::endl;
+    std::cout << spaic::dom::render(NULL) << std::endl;
+    std::cout << spaic::dom::render(123456) << std::endl;
+    std::cout << spaic::dom::render(123.456) << std::endl;
+    std::cout << spaic::dom::render(true) << std::endl;
+    std::cout << spaic::dom::render(false) << std::endl;
+    std::cout << spaic::dom::render("WAAAY") << std::endl;
+    std::cout << spaic::dom::render(test2) << std::endl;
 
     return EXIT_SUCCESS;
 }

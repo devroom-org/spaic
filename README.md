@@ -90,3 +90,8 @@ Read like *spike*.
 - spaic
 
     The core runtime
+
+## Build Requirements
+
+- emsdk
+  [*install guide](https://emscripten.org/docs/getting_started/downloads.html)
