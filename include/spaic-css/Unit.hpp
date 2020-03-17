@@ -58,7 +58,7 @@ private:
     long double value;
 
 public:
-    CssUnit(long double value) noexcept : value(value) {}
+    CssUnit(long double value) noexcept;
 
     std::string toCssValue();
 };
@@ -100,3 +100,5 @@ defineUnitUDL(percent);
 
 #undef defineUnitUDLRaw
 #undef defineUnitUDL
+
+#include <spaic-css/detail/Unit.hpp>
