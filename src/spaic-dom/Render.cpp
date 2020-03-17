@@ -8,26 +8,25 @@
 
 namespace spaic::dom
 {
-
 template <class... Ts>
 struct overloaded : Ts...
 {
     using Ts::operator()...;
 };
 template <class... Ts>
-overloaded(Ts...)->overloaded<Ts...>;
+overloaded(Ts...) -> overloaded<Ts...>;
 
-std::string render_base(spaic::vnode::VNodeBase node)
+std::string render_base(const spaic::vnode::VNodeBase &node)
 {
     std::ostringstream stream;
     std::visit(
         overloaded{
-            [&](std::nullptr_t &arg) {
+            [&](std::nullptr_t) {
                 // do nothing, nullptr means empty string.
             },
-            [&](std::string &arg) { stream << arg; },
-            [&](const char *&arg) { stream << arg; },
-            [&](spaic::comp::ComponentParent &arg) {
+            [&](const std::string &arg) { stream << arg; },
+            [&](const char *arg) { stream << arg; },
+            [&](const spaic::comp::ComponentParent &arg) {
                 if (arg.native_node_name)
                 {
                     stream << "<" << *arg.native_node_name << ">\n";
@@ -41,8 +40,8 @@ std::string render_base(spaic::vnode::VNodeBase node)
                     stream << "</" << *arg.native_node_name << ">\n";
                 }
             },
-            [&](spaic::comp::ComponentSingle &arg) { stream << typeid(std::decay_t<decltype(arg)>).name() << "(ComponentSingle)"; },
-            [&](auto arg) {
+            [&](const spaic::comp::ComponentSingle &arg) { stream << typeid(std::decay_t<decltype(arg)>).name() << "(ComponentSingle)"; },
+            [&](const auto &arg) {
                 using T = std::decay_t<decltype(arg)>;
                 if constexpr (std::is_same_v<T, bool>)
                 {
@@ -61,11 +60,11 @@ std::string render_base(spaic::vnode::VNodeBase node)
         node);
     return stream.str();
 }
-std::string render(spaic::vnode::VNode node)
+std::string render(const spaic::vnode::VNode &node)
 {
     std::ostringstream stream;
     std::visit(
-        [&](auto &&arg) {
+        [&](const auto &arg) {
             // wtf is that fucking bitches
             using T = std::decay_t<decltype(arg)>;
             if constexpr (std::is_same_v<T, std::vector<spaic::vnode::VNode>>)
